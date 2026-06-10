@@ -53,8 +53,8 @@ export default async function DashboardPage({
     return (
       <DashboardShell>
         <DashboardHeader
-          heading="kubernetes"
-          text={dict.common.dashboard.title_text}
+          heading="Meus Quadros"
+          text="Crie e gerencie os seus quadros de desenho baseados em canvas infinito."
         >
           <K8sCreateButton dict={dict.business} />
         </DashboardHeader>
@@ -63,15 +63,12 @@ export default async function DashboardPage({
             <div className="divide-y divide-border rounded-md border">
               <div className="flex items-center justify-between p-4">
                 <Table className="divide-y divide-gray-200">
-                  <TableCaption>A list of your k8s cluster .</TableCaption>
+                  <TableCaption>Uma lista dos seus quadros de desenho.</TableCaption>
                   <TableHeader>
                     <TableRow className="hover:bg-gray-50">
-                      <TableHead className="w-[100px]">Name</TableHead>
-                      <TableHead>Location</TableHead>
-                      <TableHead>UpdatedAt</TableHead>
-                      <TableHead>Plan</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>ACTION</TableHead>
+                      <TableHead>Nome</TableHead>
+                      <TableHead>Última Atualização</TableHead>
+                      <TableHead className="text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   {clusters.map((cluster) => (

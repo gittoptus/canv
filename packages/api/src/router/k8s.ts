@@ -11,6 +11,7 @@ const k8sClusterCreateSchema = z.object({
   id: z.number().optional(),
   name: z.string(),
   location: z.string(),
+  content: z.string().optional(),
 });
 
 const k8sClusterDeleteSchema = z.object({
@@ -95,16 +96,19 @@ export const k8sRouter = createTRPCRouter({
         });
       }
 
+      const content = opts.input.content;
+
       if (cluster.authUserId && cluster.authUserId !== userId) {
         throw new TRPCError({
           code: "FORBIDDEN",
           message: "You don't have access to this cluster",
         });
       }
-      if (newName || newLocation) {
+      if (newName || newLocation || content !== undefined) {
         const updateData: Record<string, string> = {};
         if (newName) updateData.name = newName;
         if (newLocation) updateData.location = newLocation;
+        if (content !== undefined) updateData.content = content;
 
         await db
           .updateTable("K8sClusterConfig")

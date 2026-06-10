@@ -17,53 +17,12 @@ interface EditLayoutProps {
   };
 }
 
-export default async function DashboardLayout({
+export default async function EditorLayout({
   children,
-  params: { lang },
 }: EditLayoutProps) {
-  const user = await getCurrentUser();
-  const dict = await getDictionary(lang);
-
-  const dashboardConfig = await getDashboardConfig({ params: { lang } });
-  if (!user) {
-    return notFound();
-  }
-
   return (
-    <div className="flex min-h-screen flex-col space-y-6">
-      <header className="sticky top-0 z-40 border-b bg-background">
-        <div className="container flex h-16 items-center justify-between py-4">
-          <MainNav
-            items={dashboardConfig.mainNav}
-            params={{ lang: `${lang}` }}
-          />
-          <UserAccountNav
-            user={{
-              name: user.name,
-              image: user.image,
-              email: user.email,
-            }}
-            params={{ lang: `${lang}` }}
-            dict={dict.dropdown}
-          />
-        </div>
-      </header>
-      <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
-        <aside className="hidden w-[200px] flex-col md:flex">
-          <DashboardNav
-            items={dashboardConfig.sidebarNav}
-            params={{ lang: `${lang}` }}
-          />
-        </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">
-          {children}
-        </main>
-      </div>
-      <SiteFooter
-        className="border-t"
-        params={{ lang: `${lang}` }}
-        dict={dict.common}
-      />
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-white">
+      {children}
     </div>
   );
 }

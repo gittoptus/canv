@@ -4,7 +4,7 @@ import type { User } from "next-auth";
 import { authOptions, getCurrentUser } from "@canvydocs/auth";
 import { db } from "@canvydocs/db";
 
-import { ClusterConfig } from "~/components/k8s/cluster-config";
+import { BoardEditor } from "~/components/k8s/board-editor";
 import type { Cluster } from "~/types/k8s";
 
 async function getClusterForUser(clusterId: Cluster["id"], userId: User["id"]) {
@@ -38,11 +38,12 @@ export default async function EditorClusterPage({
     notFound();
   }
   return (
-    <ClusterConfig
+    <BoardEditor
       cluster={{
         id: cluster.id,
         name: cluster.name,
         location: cluster.location,
+        content: cluster.content,
       }}
       params={{ lang: params.lang }}
     />

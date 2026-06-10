@@ -25,14 +25,10 @@ export function ClusterItem({ cluster }: ClusterItemProps) {
             {cluster.name}
           </Link>
         </TableCell>
-        <TableCell className="text-left">{cluster.location}</TableCell>
         <TableCell className="text-left">
           {formatDate(cluster.updatedAt?.toDateString())}
         </TableCell>
-        <TableCell className="text-left">{cluster.plan}</TableCell>
-        <TableCell className="text-left">RUNNING</TableCell>
         <TableCell className="text-right">
-          {/*<k post={{ id: cluster.id, name: cluster.name }} />*/}
           <ClusterOperations cluster={{ id: cluster.id, name: cluster.name }} />
         </TableCell>
       </TableRow>

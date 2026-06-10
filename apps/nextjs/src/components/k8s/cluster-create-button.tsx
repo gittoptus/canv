@@ -29,9 +29,10 @@ export function K8sCreateButton({
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onClick() {
+    setIsLoading(true);
     const res = await trpc.k8s.createCluster.mutate({
-      name: "Default Cluster",
-      location: "Hong Kong",
+      name: "Novo Quadro",
+      location: "Default",
     });
     setIsLoading(false);
 
@@ -45,7 +46,7 @@ export function K8sCreateButton({
       // }
       return toast({
         title: "Something went wrong.",
-        description: "Your cluster was not created. Please try again.",
+        description: "Your board was not created. Please try again.",
         variant: "destructive",
       });
     }
@@ -81,7 +82,7 @@ export function K8sCreateButton({
       ) : (
         <Icons.Add className="mr-2 h-4 w-4" />
       )}
-      {dict.k8s?.new_cluster}
+      Novo Quadro
     </button>
   );
 }

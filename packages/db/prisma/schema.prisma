@@ -89,6 +89,7 @@ model K8sClusterConfig {
   updatedAt  DateTime          @default(now())
   status     Status?           @default(PENDING)
   delete     Boolean?          @default(false)
+  content    String?           @db.Text
 
   // @@unique([plan, authUserId])
   @@index([authUserId])

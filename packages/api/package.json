@@ -27,6 +27,7 @@
   "dependencies": {
     "@canvydocs/auth": "workspace:*",
     "@canvydocs/db": "workspace:*",
+    "@canvydocs/stripe": "workspace:*",
     "@trpc/client": "10.44.1",
     "@trpc/server": "10.44.1",
     "@t3-oss/env-nextjs": "0.8.0",
